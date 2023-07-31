@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg bg-primary fixed-top" color-on-scroll="500">
+  <div class="container">
+    <!-- MAYBE WILL USE IT SO STAYS -->
+    <!-- <div class="dropdown button-dropdown" *ngIf="router.url.includes('dashboard')">
+      <div ngbDropdown>
+        <a class="dropdown-toggle" ngbDropdownToggle>
+          <span class="button-bar"></span>
+          <span class="button-bar"></span>
+          <span class="button-bar"></span>
+        </a>
+        <div ngbDropdownMenu>
+          <a class="dropdown-header">Menu</a>
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">One more separated link</a>
+        </div>
+      </div>
+    </div> -->
+    <mat-icon [routerLink]="['/main']" class="dropdown button-dropdown text-white" *ngIf="router.url.includes('dashboard')">keyboard_arrow_left</mat-icon>
+    <div class="navbar-translate">
+      <a [ngClass]="{' btn-neutral rounded-2 text-black rounded-pill p-2': router.url.includes('main')}" class="navbar-brand" [routerLink]="['/main']">
+        {{restaurantName}}
+      </a>
+    </div>
+    <div *ngIf="!router.url.includes('dashboard')" class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
+      <ul class="navbar-nav ml-auto">
+        <li [routerLink]="['/menu']" class="nav-item cursor-pointer w-50 h-25px d-flex align-content-center flex-wrap-reverse">
+          <p [ngClass]="{' btn-neutral rounded-2 text-black rounded-pill': router.url.includes('menu')}" class="nav-link">Menu</p>
+        </li>
+        <li [routerLink]="['/pizza-builder']" class="nav-item cursor-pointer w-100 h-25px d-flex align-content-center flex-wrap-reverse rounded-pill">
+          <p [ngClass]="{' btn-neutral rounded-2 text-black rounded-pill': router.url.includes('pizza-builder')}" class="nav-link">Make your own pizza!</p>
+        </li>
+        <li [routerLink]="['/profile']" class="nav-item overflow-hidden cursor-pointer w-75 rounded-pill">
+          <div [ngClass]="{' btn-neutral rounded-2 text-black': router.url.includes('profile')}" style="width: 140px !important;" class="nav-link d-flex align-content-center flex-wrap-reverse" target="_blank">
+            <p class="d-flex align-content-center flex-wrap-reverse">Profile</p>
+            <div class="user_photo horizontal_center" id="user_photo"><img [src]="userPicture"></div>
+          </div>
+        </li>
+        <li class="nav-item cursor-pointer d-flex ms-2">
+            <a class="nav-link d-flex align-content-center flex-wrap-reverse" data-placement="bottom" rel="tooltip" target="_blank">
+                <span style="position: relative;" class="d-flex">
+                <mat-icon class="material-outlined-icons" (click)="productCartService.toggle()">shopping_cart</mat-icon>
+                <span style="position: absolute;right: -10px;">
+                  {{cartProductCount}}
+              </span>
+            </span>
+          </a></li>
+          <li [routerLink]="['/dashboard']" class="nav-item cursor-pointer d-flex">
+            <a class="nav-link d-flex align-content-center flex-wrap-reverse" data-placement="bottom" rel="tooltip" target="_blank">
+              <mat-icon class="material-outlined-icons">bar_chart</mat-icon>
+          </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

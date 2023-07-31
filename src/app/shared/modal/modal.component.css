@@ -1,0 +1,44 @@
+.modal-own {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #333;
+    position: fixed;
+    width: 600px;
+    height: 440px;
+    left: 50%;
+    padding-top: 24px;
+    padding-right: 24px;
+    padding-bottom: 24px;
+    padding-left: 24px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 12;
+  }
+  
+  .close-own {
+    z-index: 12;
+    position: relative;
+    float: right;
+    color: red !important;
+  }
+ 
+ 
+  .modal-flex {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .overlay{
+    background: #000;
+    height: 10000vh;
+    opacity: 0.5;
+    position: fixed;
+    left: -200vw;
+    top: -200vh;
+    right: 0;
+    bottom: 0;
+    width: 10000vw;
+    z-index: 12;
+  }
+  

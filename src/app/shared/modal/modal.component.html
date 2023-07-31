@@ -1,0 +1,10 @@
+<ng-container *ngIf="show">
+    <div (click)="toggle()" class="overlay"></div>
+  
+    <div class="modal-own">
+      <div class="close-own">
+          <mat-icon role="button" (click)="toggle()">close</mat-icon>
+      </div>
+      <ng-content class="modal-flex"></ng-content>
+    </div>
+  </ng-container>

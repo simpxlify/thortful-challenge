@@ -1,0 +1,295 @@
+<div style="padding-top: 20px;" filter-color="blue">
+
+  <div class="wrapper" style="height: 61vh; overflow: hidden;">
+
+    <div class="grey-bg container-fluid w-100 d-flex">
+      <section id="minimal-statistics" class="w-50 pe-3">
+
+        <div style="height: 13vh;" class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Dashboard</h4>
+            <p>Statistics</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body d-flex flex-column justify-content-around"
+              style="height: 44.2vh; padding-bottom: 20px;">
+
+              <div class="row">
+
+                <div class="col-xl-4 col-sm-6 col-12">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <div class="media d-flex">
+                          <div class="media-body text-left">
+                            <h3 class="success">156</h3>
+                            <span>New Clients</span>
+                          </div>
+                          <div class="align-self-center">
+                            <i class="icon-user success font-large-2 float-right"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-4 col-sm-6 col-12">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <div class="media d-flex">
+                          <div class="media-body text-left">
+                            <h3 class="warning">64.89 %</h3>
+                            <span>Conversion Rate</span>
+                          </div>
+                          <div class="align-self-center">
+                            <i class="icon-pie-chart warning font-large-2 float-right"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 col-12">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <div class="media d-flex">
+                          <div class="media-body text-left">
+                            <h3 class="primary">423</h3>
+                            <span>Support Tickets</span>
+                          </div>
+                          <div class="align-self-center">
+                            <i class="icon-support primary font-large-2 float-right"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-xl-4 col-sm-6 col-12">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <div class="media d-flex">
+                          <div class="media-body text-left">
+                            <h3 class="warning">156</h3>
+                            <span>New Comments</span>
+                          </div>
+                          <div class="align-self-center">
+                            <i class="icon-bubbles warning font-large-2 float-right"></i>
+                          </div>
+                        </div>
+                        <div class="progress mt-1 mb-0" style="height: 7px;">
+                          <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="35"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-4 col-sm-6 col-12">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <div class="media d-flex">
+                          <div class="media-body text-left">
+                            <h3 class="success">64.89 %</h3>
+                            <span>Bounce Rate</span>
+                          </div>
+                          <div class="align-self-center">
+                            <i class="icon-cup success font-large-2 float-right"></i>
+                          </div>
+                        </div>
+                        <div class="progress mt-1 mb-0" style="height: 7px;">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 col-12">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <div class="media d-flex">
+                          <div class="media-body text-left">
+                            <h3 class="danger">423</h3>
+                            <span>Total Visits</span>
+                          </div>
+                          <div class="align-self-center">
+                            <i class="icon-direction danger font-large-2 float-right"></i>
+                          </div>
+                        </div>
+                        <div class="progress mt-1 mb-0" style="height: 7px;">
+                          <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section id="stats-subtitle" class="w-50 ps-3">
+        <div style="height: 13vh;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;">
+          <button style="height: 40px; margin-top: 40px" (click)="createEmployeeModal.toggle()">
+            Create new employee
+          </button>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body" style="height: 44.2vh; padding-bottom: 20px;overflow: auto;">
+              <span style="font-size: 9px;">*Disclaimer tas I used free API'S from the internet there are some
+                conditions, If any new request such as delete(row) or update(td-row) is too fast upon reloading it wont
+                work, you can check it yourself in the console too! It might happen if you keep hot reloading
+                too..</span>
+              <table #table mat-table matSort [dataSource]="dataSource" class="tableMat"
+                (matSortChange)="announceSortChange($event)" matSort>
+                <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+                  <!-- HEADER -->
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header
+                    [disabled]="column.columnDef === 'edit' || column.columnDef === 'delete' ">
+                    <ng-container *ngIf="column.columnDef === 'delete' || column.columnDef === 'edit'; else second">
+                    </ng-container>
+                    <ng-template #second>
+                      {{ column.header }}
+                    </ng-template>
+                  </th>
+
+                  <!-- CELLS -->
+
+                  <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="
+              column.columnDef == 'delete';
+              else elseTemplate
+            ">
+                      <!-- <td> -->
+                      <mat-icon role="button" class="material-outlined-icons text-black" (click)="deleteEmployee(row)">
+                        delete</mat-icon>
+                      <!-- </td> -->
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                      <ng-container *ngIf="
+              column.columnDef == 'edit';
+              else elseNoImg
+            ">
+
+                        <mat-icon role="button" class="material-outlined-icons text-black" (click)="editable = true">
+                          edit</mat-icon>
+                      </ng-container>
+                      <ng-template #elseNoImg>
+
+                        <span *ngIf="!editable">{{ column.cell(row) }}</span>
+                        <input *ngIf="editable" [value]="column.cell(row)"
+                          (focusout)="onFocusOutSave(row, $event.target, column.cell(row))" />
+
+                      </ng-template>
+
+                    </ng-template>
+                  </td>
+                </ng-container>
+
+                <!-- ROWS -->
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <!-- <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      [ngClass]="row.estado == 'ativo' ? 'closedDocs' : 'openDocs'"
+
+    ></tr> -->
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+  <div class="charts" style="height: 33.5vh;">
+    <div class="row h-100">
+
+
+
+      <div class="col-xl-6 col-sm-6 col-12 h-100">
+        <div class="card h-100">
+          <div class="card-content">
+            <div class="card-body">
+              <div>
+                <div class="barChart">
+                  <canvas [id]="'barChartCarbs'"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-sm-6 col-12 h-100">
+        <div class="card h-100">
+          <div class="card-content">
+            <div class="card-body">
+              <div>
+                <div class="barChart">
+                  <canvas [id]="'barChartCalories'"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-modal #createEmployeeModal>
+  <div style="display: flex;
+  height: 80%;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;">
+  <span class="text-center">FILL THE FORM TO CREATE THE EMPLOYEE</span>
+    <form class="flexRow displayAlignCenter relativePosition" [formGroup]="createEmpoyeeForm">
+      <div class="d-flex p-3">
+        <span style="width: 60px;">Name</span>
+        <input formControlName="name" type="text" />
+      </div>
+      <div class="d-flex p-3">
+        <span style="width: 60px;">Salary</span>
+        <input formControlName="salary" type="number" />
+      </div>
+      <div class="d-flex p-3">
+        <span style="width: 60px;">Age</span>
+        <input formControlName="age" type="number" />
+      </div>
+    </form>
+  </div>
+  <button [disabled]="checkIfEmpty()" style="
+  height: 20%;
+  width: 100%;" (click)="createEmployee()">
+    CREATE
+  </button>
+</app-modal>

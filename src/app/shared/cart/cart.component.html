@@ -1,0 +1,26 @@
+<div class="product-cart" *ngIf="show">
+  <ul>
+    <li *ngFor="let item of cartItems" class="justify-content-around">
+      <img class="card-img-top" src="{{item.image}}" alt="_blank">
+      <div class="d-flex flex-column">
+        <span>{{item.name}}</span>
+        <span>{{item.price}} €</span></div>
+
+      <button type="button" class="close" aria-label="Remove Item" (click)="removeItemFromCart(item.id)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </li>
+  </ul>
+  <div class="cart-total d-flex flex-column">
+    <p [ngClass]="{'disable-none': totalAmmount === 0}"><button type="button" class="btn btn-outline-primary btn-sm"
+        [ngClass]="{'disable-none': totalAmmount === 0}" (click)="emptyCart()">Empty Cart</button></p>
+    <p [ngClass]="{'disable-none': totalAmmount === 0}" class="text-right d-flex justify-content-end">
+      <span class="d-block bold">Total:</span>
+      <span class="d-block">{{totalAmmount}} €</span>
+    </p>
+    <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggle()">Close Cart</button>
+    <button type="button" class="btn btn-outline-primary btn-sm" [ngClass]="{'disable-none': totalAmmount === 0}"
+      (click)="makePayment(totalAmmount)">Check Out</button>
+
+  </div>
+</div>

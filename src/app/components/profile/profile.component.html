@@ -1,0 +1,38 @@
+
+<div class="page-header-profile" filter-color="blue" *ngIf="allUserData">
+  <div class="wrapper h-100" >
+  <div class="h-100 d-flex flex-column justify-content-center p-4">
+    <div class="h-50">
+      <div class="row row-cols-1 row-cols-md-2 g-4 h-100">
+        <div class="col d-flex align-items-center">
+          <div class="card h-100 d-flex flex-row">
+            <img [src]="bigUserPicture" class="card-img-left-tiny" alt="...">
+            <div class="card-body d-flex justify-content-center flex-column">
+              <h5 class="card-title fw-bold">{{allUserData.name.title}} {{allUserData.name.first}} {{allUserData.name.last}}</h5>
+              <p><span class="card-text fw-bold">Email: </span> <span>{{allUserData.email}}</span></p>
+              <p><span class="card-text fw-bold">Age: </span> <span>{{allUserData.registered.age}}</span></p>
+              <p><span class="card-text fw-bold">Phone: </span> <span>{{allUserData.phone}}</span></p>
+              <p><span class="card-text fw-bold">Gender: </span> <span>{{allUserData.gender}}</span></p>
+            </div>
+           
+          </div>
+        </div>
+        <div class="col d-flex align-items-center">
+          <div class="card h-100 d-flex flex-row">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Address</h5>
+              <p><span class="card-text fw-bold">Street: </span> <span>{{allUserData.location.street.name}} {{allUserData.location.street.number}}</span></p>
+              <p><span class="card-text fw-bold">City: </span> <span>{{allUserData.location.city}}</span></p>
+              <p><span class="card-text fw-bold">State: </span> <span>{{allUserData.location.state}}</span></p>
+              <p><span class="card-text fw-bold">Country: </span> <span>{{allUserData.location.country}}</span></p>
+              <p><span class="card-text fw-bold">Post-code: </span> <span>{{allUserData.location.postcode}}</span></p>
+
+            </div>
+           
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

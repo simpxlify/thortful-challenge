@@ -1,0 +1,73 @@
+<div class="page-header-profile" style="padding-top: 70px;height: 100%;" filter-color="blue">
+  <div class="wrapper d-flex dinning-table">
+    <div class="example-container h-100 bg-light">
+      <h2>Ingredients</h2>
+
+      <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
+        class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of todo" [cdkDragDisabled]="isItemInDone(item)"
+          [ngClass]="{ 'done-item': isItemInDone(item) }" cdkDrag (cdkDragStarted)="onDragStart()"
+          (cdkDragEnded)="onDragEnd()">
+          <img style="width: 30px; height: 30px; margin-right: 25px" [src]="item.small" [alt]="item.title">
+
+          {{item.title}}
+          <img *cdkDragPreview [src]="item.small" [alt]="item.title">
+          <mat-icon *ngIf="isInArray(item.title)" (click)="removeFromArray(item.title)">close</mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="done"
+            [cdkDropListConnectedTo]="[todoList, removeList]"
+            class="dinning-table"
+            id="doneList"
+            (cdkDropListDropped)="drop($event); doneDrop($event)"
+            
+          > -->
+    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
+      class="drag-4table" id="doneList" (cdkDropListDropped)="drop($event); doneDrop($event)">
+      <img src="../../../assets/pizza-maker/Plate02.png" class="plate" />
+      <img src="../../../assets/pizza-maker/Bread 5.png" class="all-others bread" />
+      <img src="../../../assets/pizza-maker/Cheese 1.png" class="all-others cheese" />
+      <img src="../../../assets/pizza-maker/lots_ham.png" *ngIf="isInArray('Ham')" class="all-others cheese" />
+      <img src="../../../assets/pizza-maker/lots_pineapple.png" *ngIf="isInArray('Pineapple')"
+        class="all-others cheese" />
+      <img src="../../../assets/pizza-maker/lots_basil.png" *ngIf="isInArray('Basil')" class="all-others green-p" />
+      <img src="../../../assets/pizza-maker/lots_corn.png" *ngIf="isInArray('Corn')" class="all-others cheese" />
+      <img src="../../../assets/pizza-maker/lots_olives.png" *ngIf="isInArray('Olives')" class="all-others cheese" />
+      <img src="../../../assets/pizza-maker/lots_greepeper.png" *ngIf="isInArray('Green Pepper')"
+        class="all-others green-p" />
+      <img src="../../../assets/pizza-maker/lots_peperoni.png" *ngIf="isInArray('Pepperoni')"
+        class="all-others cheese" />
+      <img src="../../../assets/pizza-maker/lots_mushrooms.png" *ngIf="isInArray('Mushroom')"
+        class="all-others cheese" />
+      <img src="../../../assets/pizza-maker/lots_onion.png" *ngIf="isInArray('Onion')" class="all-others cheese" />
+      <img src="../../../assets/pizza-maker/lots_redpeper.png" *ngIf="isInArray('Red Pepper')"
+        class="all-others cheese" />
+      <img src="../../../assets/pizza-maker/lots_tomatoes.png" *ngIf="isInArray('Tomato')" class="all-others cheese" />
+
+
+      <!-- <div class="example-box" *ngFor="let item of done" cdkDrag>{{item.title}}
+                
+                <img *cdkDragPreview [src]="item.small" [alt]="item.title">
+              </div>  -->
+    </div>
+
+    <!-- <div *ngFor="let item of done">{{item.title}}
+          </div> -->
+    <!-- <div class="example-container">
+            <h2>Remove</h2>
+            <div
+              cdkDropList
+              #removeList="cdkDropList"
+              [cdkDropListData]="[]"
+              [cdkDropListConnectedTo]="[todoList, doneList]"
+              class="example-list remove-list"
+              (cdkDropListDropped)="doneDrop($event)">
+            </div>
+          </div> -->
+  </div>
+</div>
