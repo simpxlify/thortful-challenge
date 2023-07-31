@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -14,9 +14,9 @@ import { ApiResponseEmployees, ApiResponseFruit, Employee } from 'src/app/utils/
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   dataSource = new MatTableDataSource<any>();
-  chart = new Array<Chart>(3);
+  chart = new Array<Chart>(2);
   editable = false
   columns = [
     {
@@ -65,6 +65,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   ngOnInit(): void {
     
+   
+  }
+
+  ngAfterViewInit() {
     this.employeeService.getEmployeeData().subscribe({
       next: (succ: any) => {
         console.log(succ);
@@ -95,12 +99,22 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         
       },
     })
-  }
-
-  ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
-
+  ngOnDestroy(): void {
+    this.resetGraphs();
+  }
+  resetGraphs() {
+    for (let index = 0; index < this.chart.length; index++) {
+      if(
+      this.chart[index]
+      )
+      this.chart[index].stop;
+      this.chart[index].unbindEvents();
+      this.chart[index].destroy();
+    }
+   
+  }
   announceSortChange(sortState: any) {
     if (sortState.direction) {
       console.log(`Sorted ${sortState.direction}ending`);
