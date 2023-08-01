@@ -1,7 +1,7 @@
 <div class="product-cart" *ngIf="show">
   <ul>
     <li *ngFor="let item of cartItems" class="justify-content-around">
-      <img class="card-img-top" src="{{item.image}}" alt="_blank">
+      <img *ngIf="item && item.image" class="card-img-top" src="{{item.image}}" alt="_blank">
       <div class="d-flex flex-column">
         <span>{{item.name}}</span>
         <span>{{item.price}} €</span></div>

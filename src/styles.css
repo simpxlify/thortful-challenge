@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -5520,10 +5521,9 @@ body {
 }
 
 .navbar.navbar-transparent {
-    background-color: transparent !important;
+    background-color: #c7c9a1 !important;
     box-shadow: none;
     color: #FFFFFF;
-    padding-top: 20px;
 }
 
 .navbar.bg-white:not(.navbar-transparent) a:not(.dropdown-item):not(.btn) {
@@ -8770,6 +8770,12 @@ Created using IcoMoon - icomoon.io
 .footer ul li {
     display: inline-block;
 }
+.bg-restaurant{
+    width: 100%;
+    height: 100%;
+    background: url(../src/assets/bg_rest.jpg) 10% 70% !important;
+    background-size: cover !important;
+}
 
 .footer ul li a {
     color: inherit;
@@ -8806,7 +8812,7 @@ Created using IcoMoon - icomoon.io
 
 .index-page .page-header,
 .presentation-page .page-header {
-    height: 125vh;
+    height: 88vh;
 }
 
 .index-page .page-header .container>.content-center,
@@ -9559,7 +9565,6 @@ Created using IcoMoon - icomoon.io
 }
 
 .page-header {
-    min-height: 100vh;
     max-height: 999px;
     padding: 0;
     color: #FFFFFF;

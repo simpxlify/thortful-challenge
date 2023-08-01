@@ -19,7 +19,8 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModalComponent } from './shared/modal/modal.component'; 
+import { ModalComponent } from './shared/modal/modal.component';
+import { StepperComponent } from './shared/stepper/stepper.component'; 
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ModalComponent } from './shared/modal/modal.component';
     MenuComponent,
     CartComponent,
     DashboardComponent,
-    ModalComponent
+    ModalComponent,
+    StepperComponent
   ],
   imports: [
     FormsModule,

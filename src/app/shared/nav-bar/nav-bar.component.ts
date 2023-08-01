@@ -21,10 +21,11 @@ export class NavBarComponent extends MainCommon  {
     public productCartService: ProductCartService,
     private _userService: UserService,
     private _restaurantService: RestaurantService,
-    private _router: Router 
+    private _router: Router,
+    private _productService: ProductCartService
 
   ) {
-    super(_userService, _restaurantService, _router); 
+    super(_userService, _restaurantService, _router, _productService); 
       this.sidebarVisible = false;
       const navbar: HTMLElement = this.element.nativeElement;
 

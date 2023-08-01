@@ -56,7 +56,26 @@
   .green-p{
     width: 30%;
   }
+  :host >>> .mat-horizontal-stepper-wrapper {
+    height: 100% !important;
+  }
+  :host >>> .mat-horizontal-content-container {
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  :host >>> .mat-step-icon-state-edit{
+    background-color: orange !important;
+  }
+  :host >>>  .mat-step-icon-selected{
+    background-color: orange !important;
+  }
   .example-box {
+    position: relative;
     padding: 20px 10px;
     border-bottom: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
@@ -116,4 +135,12 @@
   
   .blink-animation {
     animation: blinking 1s infinite;
+  }
+
+  .mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
   }

@@ -41,7 +41,7 @@ export class MenuComponent implements OnInit {
       next: (succeed: PizzaProds[]) => {
         if(succeed){
           succeed.forEach((product) => {
-            product.image = "../../../assets/pizza-maker/Corn.png"
+            product.image = "../../../assets/pizza-maker/pizza_pepe.png"
           });
           this.products = succeed
         }
@@ -72,7 +72,8 @@ export class MenuComponent implements OnInit {
     this.singleProduct = this.products.filter((product: any) => {
       return product.id === productId;
     });
-  
+    console.log(this.singleProduct[0]);
+    
     this.productCartService.addProductToCart(this.singleProduct[0]);
   }
   

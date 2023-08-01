@@ -41,10 +41,10 @@
           </div>
         </li>
         <li class="nav-item cursor-pointer d-flex ms-2">
-            <a class="nav-link d-flex align-content-center flex-wrap-reverse" data-placement="bottom" rel="tooltip" target="_blank">
+            <a (click)="productCartService.toggle()" class="nav-link d-flex align-content-center flex-wrap-reverse" data-placement="bottom" rel="tooltip" target="_blank">
                 <span style="position: relative;" class="d-flex">
-                <mat-icon class="material-outlined-icons" (click)="productCartService.toggle()">shopping_cart</mat-icon>
-                <span style="position: absolute;right: -10px;">
+                <mat-icon class="material-outlined-icons" >shopping_cart</mat-icon>
+                <span  style="position: absolute;right: -10px;">
                   {{cartProductCount}}
               </span>
             </span>

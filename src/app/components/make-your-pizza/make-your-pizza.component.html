@@ -1,20 +1,21 @@
 <div class="page-header-profile" style="padding-top: 70px;height: 100%;" filter-color="blue">
   <div class="wrapper d-flex dinning-table">
     <div class="example-container h-100 bg-light">
-      <h2>Ingredients</h2>
+      <h2 style="margin-top: 20px;">Ingredients</h2>
 
       <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
         class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" [cdkDragDisabled]="isItemInDone(item)"
+        <div class="example-box"  *ngFor="let item of todo" [cdkDragDisabled]="isItemInDone(item)"
           [ngClass]="{ 'done-item': isItemInDone(item) }" cdkDrag (cdkDragStarted)="onDragStart()"
           (cdkDragEnded)="onDragEnd()">
           <img style="width: 30px; height: 30px; margin-right: 25px" [src]="item.small" [alt]="item.title">
 
-          {{item.title}}
+          {{item.title}} - {{item.price}} €
           <img *cdkDragPreview [src]="item.small" [alt]="item.title">
-          <mat-icon *ngIf="isInArray(item.title)" (click)="removeFromArray(item.title)">close</mat-icon>
+          <mat-icon role="button" style="position: absolute; right: 25px;" *ngIf="isInArray(item.title)" (click)="removeFromArray(item.title)">close</mat-icon>
         </div>
       </div>
+      <h6 style="margin-top: 20px;">*Disclaimer every pizza is 20€ base</h6>
     </div>
 
     <!-- <div
@@ -71,3 +72,37 @@
           </div> -->
   </div>
 </div>
+<button mat-button style="position: absolute; bottom: 35px; right: 35px; width: 350px; height: 50px; background-color: wheat;" *ngIf="done.length >= 3" (click)="stepperModal.toggle()">
+NEXT
+</button>
+
+<app-modal #stepperModal>
+  <mat-horizontal-stepper labelPosition="bottom" [linear]="true" #stepper class="h-100">
+    <mat-step *ngFor="let env of environment; let i = index" [stepControl]="getStepFormGroup(i)" class="h-100">
+      <ng-template matStepLabel>{{ env.label }}</ng-template>
+      <ng-container *ngIf="env.content === ''; else staticContent">
+        <mat-radio-group class="d-flex flex-column mt-3" [formControl]="getFormControl(i, 'content')"
+        >
+          <!-- Add the (change) event to trigger the next() method -->
+          <mat-radio-button
+          *ngFor="let item of getItemsByStep(env.label); let itemIndex = index"
+          [value]="item.label"
+            (click)="goForward(stepper)"
+            [ngClass]="{'display-none': !item.label}"
+            >{{ item.label }}</mat-radio-button>
+        </mat-radio-group>
+      </ng-container>
+      <ng-template #staticContent>
+        <mat-checkbox [formControl]="getFormControl(i, 'content')">{{ env.content }}</mat-checkbox>
+      </ng-template>
+      <div *ngIf="!isLastStep(i)">
+        <!-- Remove the "Next" button as it's not needed when using radio buttons -->
+      </div>
+      <div *ngIf="isLastStep(i)" class="h-100">
+        <button mat-button (click)="finish(); stepperModal.toggle()" style="background-color: orange;" >Add all to cart</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
+  
+</app-modal>

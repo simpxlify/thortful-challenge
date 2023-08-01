@@ -1,87 +1,187 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatStep, MatStepper } from '@angular/material/stepper';
+import { ProductCartService } from 'src/app/shared/services/product-cart.service';
+import { MenuItem } from 'src/app/utils/interfaces';
 
 @Component({
   selector: 'app-make-your-pizza',
   templateUrl: './make-your-pizza.component.html',
   styleUrls: ['./make-your-pizza.component.css']
 })
-export class MakeYourPizzaComponent {
+export class MakeYourPizzaComponent implements OnInit {
 
   @ViewChild('doneList', { read: ElementRef }) doneListRef: ElementRef | undefined;
+  @ViewChild('stepper') stepper!: MatStepper;
 
   todo = [
     {
       title: 'Basil',
       small: '../../../assets/pizza-maker/Basil.png',
       large: '../../../assets/pizza-maker/lots_basil.png',
+      price: 3
 
     },
     {
       title: 'Corn',
       small: '../../../assets/pizza-maker/Corn.png',
       large: '../../../assets/pizza-maker/lots_corn.png',
+      price: 3
 
     },
     {
       title: 'Olives',
       small: '../../../assets/pizza-maker/green_olives.png',
       large: '../../../assets/pizza-maker/lots_olives.png',
+      price: 3
 
     },
     {
       title: 'Ham',
       small: '../../../assets/pizza-maker/Ham.png',
       large: '../../../assets/pizza-maker/lots_ham.png',
+      price: 3
 
     },
     {
       title: 'Green Pepper',
       small: '../../../assets/pizza-maker/Pepper.png',
       large: '../../../assets/pizza-maker/lots_greepeper.png',
+      price: 3
 
     },
     {
       title: 'Pepperoni',
       small: '../../../assets/pizza-maker/Pepperoni.png',
       large: '../../../assets/pizza-maker/lots_peperoni.png',
+      price: 3
 
     },
     {
       title: 'Mushroom',
       small: '../../../assets/pizza-maker/Mushroom.png',
       large: '../../../assets/pizza-maker/lots_mushrooms.png',
+      price: 3
 
     },
     {
       title: 'Onion',
       small: '../../../assets/pizza-maker/Onion.png',
       large: '../../../assets/pizza-maker/lots_onion.png',
+      price: 3
 
     },
     {
       title: 'Pineapple',
       small: '../../../assets/pizza-maker/Pineapple.png',
       large: '../../../assets/pizza-maker/lots_pineapple.png',
+      price: 3
 
     },
     {
       title: 'Red Pepper',
       small: '../../../assets/pizza-maker/red_peper.png',
       large: '../../../assets/pizza-maker/lots_redpeper.png',
+      price: 3
 
     },
     {
       title: 'Tomato',
       small: '../../../assets/pizza-maker/Tomato.png',
       large: '../../../assets/pizza-maker/lots_tomatoes.png',
+      price: 3
 
     }
   ];
+  environment = [
+    { label: 'Appetizer', content: '' },
+    { label: 'Drinks', content: '' },
+    { label: 'Desserts', content: '' },
+    { label: 'Finish', content: '' }
+  ];
 
+
+  appetizer: MenuItem[] = [
+    { label: 'Cheese sticks', price: 5 },
+    { label: 'Garlic Bread', price: 5 },
+    { label: 'Potatoes Wedges', price: 5 },
+    { label: 'Nothing', price: 0 },
+  ];
+
+  drinks: MenuItem[] = [
+    { label: 'Coca-cola', price: 5 },
+    { label: '7Up', price: 5 },
+    { label: 'Pepsi', price: 5 },
+    { label: 'Nothing', price: 0 },
+  ];
+
+  desserts: MenuItem[] = [
+    { label: 'Cheesecake', price: 5 },
+    { label: 'Apple Pie', price: 5 },
+    { label: 'Brownie', price: 5 },
+    { label: 'Nothing', price: 0 },
+  ];
   done = new Array<any>();
+  firstFormGroup!: FormGroup;
+  secondFormGroup!: FormGroup;
+  thirdFormGroup!: FormGroup;
+  fourthFormGroup!: FormGroup;
+  environmentForm: FormGroup[] = [];
+  radioChanged: boolean = false;
 
+  constructor(private _formBuilder: FormBuilder, private productCartService: ProductCartService, private cdRef: ChangeDetectorRef) {
+   
+  }
+  ngOnInit(): void {
+    this.firstFormGroup = this._formBuilder.group({
+      content: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      content: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      content: ['', Validators.required]
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      content: ['', Validators.required]
+    });
+    this.createFormGroups();
 
+  }
+
+  createFormGroups() {
+    // Create form groups for each step with the content field
+    this.environmentForm = this.environment.map(env =>
+      this._formBuilder.group({
+        content: [env.content, Validators.required]
+      })
+    );
+  }
+ 
+goForward(stepper: MatStepper) {
+  const currentStepIndex = stepper.selectedIndex;
+  const currentStep = stepper.steps.toArray()[currentStepIndex] as MatStep;
+
+  // If the step is not already marked as completed, mark it as completed
+  if (!currentStep.completed) {
+    currentStep.completed = true;
+  }
+  this.cdRef.detectChanges(); 
+  console.log(stepper);
+  
+  stepper.next();
+}
+  onRadioButtonChange(index: number) {
+    console.log(this.stepper.selectedIndex);
+    
+    this.stepper.selectedIndex = index + 1;
+    console.log(this.stepper.selectedIndex);
+
+  }
+  getStepFormGroup(envIndex: number): FormGroup {
+    return this.environmentForm[envIndex];
+  }
   drop(event: CdkDragDrop<string[]> | any) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -103,7 +203,77 @@ export class MakeYourPizzaComponent {
     this.done.splice(index, 0, clonedItem);
     
   }
+  finish(): void {
+    // Send the form data one by one to the productCartService
+    this.environmentForm.forEach((formGroup, index) => {
+      const formData = this.getFormDataWithoutCircularRefs([formGroup]);
+      if(formData)
+      this.productCartService.addProductToCart(formData[0]); // Assuming your productCartService.addProductToCart() expects a single product as an argument.
+    });
+    const customPizzaBasePrice = 20;
+    const totalPrice = this.done.reduce((acc, topping) => acc + topping.price, customPizzaBasePrice);
 
+    const customPizza: any = {
+      name: 'Custom Pizza',
+      price: totalPrice,
+    };
+    this.productCartService.addProductToCart(customPizza); 
+    // Reset the form
+    this.stepper.reset();
+  }
+  isLastStep(stepIndex: number): boolean {
+    return stepIndex === this.environment.length - 1;
+  }
+  getItemsByStep(stepLabel: string): MenuItem[] {
+    switch (stepLabel) {
+      case 'Appetizer':
+        return this.appetizer;
+      case 'Drinks':
+        return this.drinks;
+      case 'Desserts':
+        return this.desserts;
+      default:
+        return [];
+    }
+  }
+  getFormDataWithoutCircularRefs(formGroups: FormGroup[]): any {
+    const formData: any[] = [];
+    for (const formGroup of formGroups) {
+      const contentControl = formGroup.get('content');
+      if (contentControl?.value !== null && contentControl?.value.trim() !== '') { // Check if content is not null and not an empty string
+        const formGroupData: any = {};
+        Object.keys(formGroup.controls).forEach(controlName => {
+          const control = formGroup.get(controlName);
+          if (controlName === 'content') {
+            const contentValue = control?.value;
+            formGroupData['name'] = contentValue;
+            formGroupData['price'] = this.getPriceByContent(contentValue);
+          } else {
+            formGroupData[controlName] = control instanceof FormControl ? control.value : control?.value.content;
+          }
+        });
+        formGroupData['id'] = this.generateRandomId();
+        formData.push(formGroupData);
+      }
+    }
+
+    // Remove null entries from formData
+    const filteredFormData = formData.filter(data => data !== null);
+    if(filteredFormData.length === 0)return
+    return filteredFormData;
+  }
+
+  getPriceByContent(content: string): number {
+    const item = [...this.appetizer, ...this.drinks, ...this.desserts].find(item => item.label === content);
+    return item ? item.price : 0;
+  }
+  getFormControl(envIndex: number, controlName: string): FormControl {
+    const control = this.environmentForm[envIndex].get(controlName);
+    return control instanceof FormControl ? control : new FormControl('');
+  }
+  generateRandomId(): string {
+    return Math.random().toString(36).substring(2);
+  }
   removeFromArray(titleToRemove: string): void {
     const indexToRemove = this.done.findIndex(item => item.title === titleToRemove);
     if (indexToRemove !== -1) {

@@ -4,6 +4,7 @@ import { Result, ApiResponseProfile, ApiResponseGetRestaurant } from "./interfac
 import { RestaurantService } from "../shared/services/restaurant.service";
 import { Subscription } from "rxjs";
 import { Router } from "@angular/router";
+import { ProductCartService } from "../shared/services/product-cart.service";
 
 @Component({
     template: '',
@@ -16,7 +17,7 @@ import { Router } from "@angular/router";
     userPicture: string = '';
     restaurantName: string = '';
   
-    constructor(private userService: UserService, private restaurantService: RestaurantService, public router: Router) {}
+    constructor(private userService: UserService, private restaurantService: RestaurantService, public router: Router, private productService: ProductCartService) {}
     ngOnInit(): void {
         this.userDataSubscription = this.userService.getUserData().subscribe({
         next: (succeed: ApiResponseProfile) => {

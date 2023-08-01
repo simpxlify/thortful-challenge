@@ -133,3 +133,7 @@ export interface Street {
       protein: number;
     };
   }
+  export interface MenuItem {
+    label: string;
+    price: number;
+  }

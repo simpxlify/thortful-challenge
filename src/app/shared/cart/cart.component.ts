@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { ProductCartService } from '../services/product-cart.service';
 import { StripeService } from 'ngx-stripe';
 import { StripeElementsOptions  } from '@stripe/stripe-js';
@@ -9,7 +9,7 @@ import { RestaurantService } from '../services/restaurant.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   show: boolean = false;
   cartItems!: any;
   totalAmmount: number = 0;
@@ -29,19 +29,23 @@ export class CartComponent {
   }
 
   ngOnInit() {
+    
      this.productCartService.getShowStatusObservable().subscribe((show) => {
       this.show = show;
     });
-    this.productCartService.getProducts().subscribe(data => {
-      
-      this.cartItems = data;
-      this.totalAmmount = this.productCartService.getTotalPrice();
-
-    });
+    this.productCartService.getProducts().subscribe(
+      data => {
+        this.cartItems = data;
+        this.totalAmmount = this.productCartService.getTotalPrice();
+      },
+      error => {
+        console.error('Error fetching cart items:', error);
+      }
+    );
+    
     this.invokeStripe();
 
   }
-
  
   toggle () {
     this.show = !this.show;

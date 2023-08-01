@@ -1,4 +1,7 @@
 .card-img-left-tiny{
     width: auto;
+    border-top-left-radius: var(--bs-border-radius)!important;
+    border-bottom-left-radius: var(--bs-border-radius)!important;
+
     height: 100%;
 }
