@@ -46,34 +46,34 @@ export class EmployeeService {
       'Content-Type': 'application/json'
     });
 
-    this.http.post(url, data, { headers }).subscribe(
-      (response:any) => {
+    this.http.post(url, data, { headers }).subscribe({
+      next: (response: any) => {
         console.log('Request successful. Response:', response);
-
+    
         // Assuming the response is a single employee object
         const newEmployee: Employee = this.transformToEmployee(response.data);
-  
+    
         // Get the existing employee data or initialize an empty array
         const employeesData = this.employeeDataMap.get('employee') || [];
-  
+    
         // Add the new employee to the existing data
-        if(!employeesData.hasOwnProperty('data')){
+        if (!employeesData.hasOwnProperty('data')) {
           employeesData.push(newEmployee);
-          
-        } else if(employeesData.data){
+        } else if (employeesData.data) {
           employeesData.data.push(newEmployee);
         }
-  
+    
         // Update the map with the new employee data
         this.employeeDataMap.set('employee', employeesData);
-  
+    
         // Notify subscribers about the updated employee data
         this.employeeDataSubject.next(employeesData);
       },
-      (error) => {
+      error: (error) => {
         console.error('Request failed:', error);
       }
-    );
+    });
+    
   }
   transformToEmployee(data: any): Employee {
     const employee: Employee = {
@@ -90,7 +90,6 @@ export class EmployeeService {
     if (updatedEmployeeData && updatedEmployeeData.id) {
       // If the updated data has an "id" property, it means it represents a single employee.
       const employeesData = this.employeeDataMap.get('employee') || [];
-      console.log(employeesData);
       let employeeIndex = 0;
       if(!employeesData.hasOwnProperty('data')){
         employeeIndex = employeesData.findIndex((employee: Employee) => employee.id === updatedEmployeeData.id);
@@ -102,7 +101,6 @@ export class EmployeeService {
         
         this.http.put(url+updatedEmployeeData.id, updatedEmployeeData).pipe(
           tap(() => {
-            console.log(`Employee with ID ${updatedEmployeeData.id} updated on the backend.`);
             // If the employee is found in the map, update it.
         employeesData[employeeIndex] = updatedEmployeeData;
         this.employeeDataMap.set('employee', employeesData);
@@ -122,7 +120,6 @@ export class EmployeeService {
    
     this.http.delete(url + employeeId).pipe(
       tap(() => {
-        console.log(`Employee with ID ${employeeId} deleted on the backend.`);
          // Update the user data in the map and notify subscribers after deletion.
     const employeesData = this.employeeDataMap.get('employee') || [];
     let updatedEmployeeData:any
@@ -132,7 +129,6 @@ export class EmployeeService {
     } else if(employeesData.data){
       updatedEmployeeData = employeesData.data.filter((employee: Employee) => employee.id !== employeeId);
     }
-    console.log(updatedEmployeeData);
     
     this.employeeDataMap.set('employee', updatedEmployeeData);
     this.employeeDataSubject.next(updatedEmployeeData);

@@ -129,11 +129,14 @@ export class MakeYourPizzaComponent implements OnInit {
   fourthFormGroup!: FormGroup;
   environmentForm: FormGroup[] = [];
   radioChanged: boolean = false;
-
+  showPressHold: boolean = true;
+  showSwipeHorizontal: boolean = false;
   constructor(private _formBuilder: FormBuilder, private productCartService: ProductCartService, private cdRef: ChangeDetectorRef) {
    
   }
   ngOnInit(): void {
+    this.toggleSVGs();
+
     this.firstFormGroup = this._formBuilder.group({
       content: ['', Validators.required]
     });
@@ -168,17 +171,19 @@ goForward(stepper: MatStepper) {
     currentStep.completed = true;
   }
   this.cdRef.detectChanges(); 
-  console.log(stepper);
   
   stepper.next();
 }
-  onRadioButtonChange(index: number) {
-    console.log(this.stepper.selectedIndex);
-    
-    this.stepper.selectedIndex = index + 1;
-    console.log(this.stepper.selectedIndex);
+toggleSVGs() {
+  setTimeout(() => {
+    this.showPressHold = false;
+    this.showSwipeHorizontal = true;
 
-  }
+    setTimeout(() => {
+      this.showSwipeHorizontal = false;
+    }, 3000); 
+  }, 4000); 
+}
   getStepFormGroup(envIndex: number): FormGroup {
     return this.environmentForm[envIndex];
   }

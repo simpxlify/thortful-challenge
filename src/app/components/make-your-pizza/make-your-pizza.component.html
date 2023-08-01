@@ -1,13 +1,14 @@
 <div class="page-header-profile" style="padding-top: 70px;height: 100%;" filter-color="blue">
   <div class="wrapper d-flex dinning-table">
-    <div class="example-container h-100 bg-light">
-      <h2 style="margin-top: 20px;">Ingredients</h2>
+    <div class="example-container h-100 bg-light position-relative">
+      <h2 style="margin-top: 20px; display: flex;">Ingredients <h6 style="margin-left: 10px;margin-bottom: 0px !important;align-items: center; display: flex;margin-top: 4px ;">(try dragging them)</h6></h2>
 
       <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
         class="example-list" (cdkDropListDropped)="drop($event)">
         <div class="example-box"  *ngFor="let item of todo" [cdkDragDisabled]="isItemInDone(item)"
           [ngClass]="{ 'done-item': isItemInDone(item) }" cdkDrag (cdkDragStarted)="onDragStart()"
           (cdkDragEnded)="onDragEnd()">
+          
           <img style="width: 30px; height: 30px; margin-right: 25px" [src]="item.small" [alt]="item.title">
 
           {{item.title}} - {{item.price}} €
@@ -15,6 +16,27 @@
           <mat-icon role="button" style="position: absolute; right: 25px;" *ngIf="isInArray(item.title)" (click)="removeFromArray(item.title)">close</mat-icon>
         </div>
       </div>
+      <svg style="position: absolute;
+      width: 348px;
+      top: 52px;
+      right: -108px;
+      flex-direction: row;" *ngIf="showPressHold" id="Press-hold_1" data-name="Press hold 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+        <path class="hold-2" d="M56,72.25a33.5,33.5,0,0,1,67,0"/>
+        <path class="hold-1" d="M67,72.25a22.5,22.5,0,0,1,45,0"/>
+        <path class="hand-hold" d="M139.93,109,98.81,102V71.48a9.25,9.25,0,0,0-9.25-9.25h0a9.25,9.25,0,0,0-9.25,9.25v57.36L71,118c-3.61-3.61-8.44-3.89-13.08,0,0,0-7.24,5.84-3.83,9.25l34,34h42.63a9.25,9.25,0,0,0,9.07-7.43l6.82-34.09A9.28,9.28,0,0,0,139.93,109Z"/>
+      </svg>
+      <svg style="position: absolute;
+      width: 348px;
+      top: 52px;
+      right: -108px;
+      flex-direction: row;" *ngIf="showSwipeHorizontal" id="Swipe-horizontal_1" data-name="Swipe horizontal 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+        <path class="hand-x" d="M139.93,113.56l-41.12-6.93V76.08a9.25,9.25,0,0,0-9.25-9.25h0a9.25,9.25,0,0,0-9.25,9.25v57.36L71,122.65c-3.61-3.61-8.44-3.89-13.08,0,0,0-7.24,5.84-3.83,9.25l34,34h42.63a9.25,9.25,0,0,0,9.07-7.43l6.82-34.09A9.28,9.28,0,0,0,139.93,113.56Z"/>
+        <g class="swipe-horizontal">
+          <path class="line-horizontal" d="M70.85,42c19.69-12.46,37,0,37,0"/>
+          <polyline class="arrow-left" points="76.6 46.01 68.37 43.43 68.38 43.41 70.96 35.18"/>
+          <polyline class="arrow-right" points="100.21 44.66 108.43 42.08 108.43 42.06 105.85 33.84"/>
+        </g>
+      </svg>
       <h6 style="margin-top: 20px;">*Disclaimer every pizza is 20€ base</h6>
     </div>
 
@@ -106,3 +128,4 @@ NEXT
   
   
 </app-modal>
+

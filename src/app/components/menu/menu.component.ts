@@ -72,7 +72,6 @@ export class MenuComponent implements OnInit {
     this.singleProduct = this.products.filter((product: any) => {
       return product.id === productId;
     });
-    console.log(this.singleProduct[0]);
     
     this.productCartService.addProductToCart(this.singleProduct[0]);
   }

@@ -71,7 +71,6 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.employeeService.getEmployeeData().subscribe({
       next: (succ: any) => {
-        console.log(succ);
         if(succ){
         if(!succ.hasOwnProperty('data')){
           this.dataSource.data = succ

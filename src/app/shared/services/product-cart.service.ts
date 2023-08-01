@@ -14,7 +14,6 @@ export class ProductCartService {
 
     this.cartItems = JSON.parse(localStorage.getItem('cartItems') ||'[]'); // get the data at lunch 
     this.products.next(this.cartItems);
-    console.log(this.cartItems);
     
   }
 
