@@ -27,6 +27,7 @@ Add:
 - More data and validations for reactive forms etc
 - Implement an offline part
 - Set more local files and fonts and css so it works on offline mode
+- Unit tests, and learn them
 
 Its not my best project but I think I've did a good job going through almost everything you can do on the daily basis on an angular project, of course there are many more things that I wish to know and learn too!
 
